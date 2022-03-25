@@ -33,7 +33,9 @@ function valForm(){
         error === true
         document.getElementById("emailError").innerHTML="please, write a valid Email-address"
         return false ;
-    }else if(email && email !== "" && !validateEmail(email)) {
+    }
+    
+    if(!validateEmail(email)) {
         document.getElementById("emailError").innerHTML="Invalid email address"
     }
     console.log("errrrrrrrr", validateEmail(email))
