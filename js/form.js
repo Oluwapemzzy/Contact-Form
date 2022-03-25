@@ -21,6 +21,7 @@ function valForm(){
     const uname = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
+    
     const message = document.getElementById("message").value;
     
     if(!uname){
@@ -28,17 +29,18 @@ function valForm(){
         error === true 
         return false
     } 
-    if(!email){
-        //change error status to true is value is empty
-        error === true
-        document.getElementById("emailError").innerHTML="please, write a valid Email-address"
-        return false ;
+    
+   
+    function validateEmail(elementValue){
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
+        return emailPattern.test(elementValue);
     }
     
-    if(!validateEmail(email)) {
+    if( !validateEmail(email)  && email !=="" ) {
         document.getElementById("emailError").innerHTML="Invalid email address"
     }
-    console.log("errrrrrrrr", validateEmail(email))
+    // console.log("errrrrrrrr", validateEmail(email))
+    
     if(!phone){
         //change error status to true is value is empty
         error === true 
@@ -71,6 +73,22 @@ const form = document.getElementById("contactForm")
 form.addEventListener("submit", (e) => {
    e.preventDefault()
    console.log(e)
+
+   const email = document.getElementById("email").value;
+    if(email ===""){
+    console.log(email)
+    //change error status to true is value is empty
+    error === true
+    document.getElementById("emailError").innerHTML="please, write a valid Email-address"
+    return false ;
+}
+
+   const msg = document.getElementsByClassName("msg")[0]
+   
+   console.log(msg)
+   msg.innerHTML="<div class=' alert alert-success'> Your Information has Successfully been Recorded </div>"
+
+   form.reset()
 //   const btnBg =  e.target[4].style.backgroundColor="yellow"
 //   const btn =  e.target[1].style.backgroundColor="#000"
 //   const btnb =  e.target[0].style.borderColor="red"
